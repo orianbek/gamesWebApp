@@ -1,34 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { useEffect } from 'react';
+import { useState } from 'react';
+import Games from './components/Games';
 
 function App() {
 
-  const [songs, setSongs] = useState([])
+  const [games, setGames] = useState([])
 
   useEffect(() => {
-    const fetchSongs = async () => {
+    const fetchGames = async () => {
       try {
-        const response = await fetch("https://api.deezer.com/search?q=denis%20loyd")
+        const response = await fetch("https://corsproxy.io/https://www.freetogame.com/api/games")
         const data = await response.json()
 
-        const formatSongs = data.data.map(song => ({
-          name: song.title,
-          img: song.album.cover_medium,
-          duration: song.duration
+        const formatGames = data.map(game => ({
+          name: game.title,
+          img: game.thumbnail,
+          realesDate: game.release_date
         }))
 
-        setSongs(formatSongs)
+        setGames(formatGames)
       } catch (error) {
         console.log(error)
       }
     }
-    fetchSongs()
+    fetchGames()
 
   }, []);
   return (
     <div className="App">
-      <Song items ={songs}/>
+      <Games items={games} />
     </div>
   );
 }
