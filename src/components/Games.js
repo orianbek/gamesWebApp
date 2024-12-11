@@ -1,9 +1,10 @@
 import GameItem from "./GameItem"
-
-function Songs(props) {
+import  "./Games.css"
+function Games(props) {
 
     return (
-        <div >
+        <div className="free-game-grid">
+        
             {props.items.map((item, index) => (
                 <GameItem
                     key={index}
@@ -19,4 +20,4 @@ function Songs(props) {
     )
 }
 
-export default Songs
+export default Games
