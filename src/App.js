@@ -6,7 +6,8 @@ import Games from './components/Games';
 
 function App() {
 
-  const [games, setGames] = useState([])
+  const [games, setGames] = useState([]);
+  const [searchBar, setSearchBar] = useState('');
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -28,9 +29,24 @@ function App() {
     fetchGames()
 
   }, []);
+
+  const filteredGames = searchBar ? games.filter(game =>
+    game.name.toLowerCase().includes(searchBar.toLowerCase())
+  ) : games;
+
   return (
     <div className="App">
-      <Games items={games} />
+      <br></br>
+      <h1 className="h1">World's collection of free to play games !</h1>
+      <br></br>
+      <input
+        type="text"
+        placeholder="Search for a game"
+        value={searchBar}
+        onChange={(e) => setSearchBar(e.target.value)}
+      />
+      <br></br><br></br>
+      <Games items={filteredGames} />
     </div>
   );
 }
