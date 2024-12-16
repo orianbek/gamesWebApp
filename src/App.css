@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-image: url('C:\Users\orian\secondyearProjects\gameAPI\gameapp\src\components\webBackground.jpg');
+  background-image: url('./resources/webBackground.jpg');
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
